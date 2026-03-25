@@ -1,0 +1,17 @@
+# Docker
+.env
+data/
+*/data/
+prometheus_data/
+grafana_data/
+
+# Ansible
+*.retry
+ansible.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

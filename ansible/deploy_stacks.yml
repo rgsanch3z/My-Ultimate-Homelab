@@ -1,0 +1,22 @@
+---
+- name: Gestionar todos los Stacks del Homelab
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+    # Tarea 1: El Stack de Monitoreo
+    - name: Desplegar Stack de Monitoreo
+      community.docker.docker_compose_v2:
+        project_src: "/home/rgsanchez/My-Ultimate-Homelab/stacks/monitoring"
+        state: present
+        wait: yes
+
+    # Tarea 2: Tu otro Stack (Homelab General)
+    - name: Desplegar Stack Homelab General
+      community.docker.docker_compose_v2:
+        project_src: "/home/rgsanchez/My-Ultimate-Homelab/stacks/general"
+        state: present
+        wait: yes
+        
+    
