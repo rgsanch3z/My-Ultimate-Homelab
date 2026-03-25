@@ -1,0 +1,5 @@
+nginx-proxy/
+pihole/
+*.db
+*.log
+.DS_Store
