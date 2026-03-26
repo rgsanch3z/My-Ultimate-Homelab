@@ -1,17 +1,23 @@
-# Docker
+cat <<EOF > ~/My-Ultimate-Homelab/.gitignore
+# --- Docker & Stacks ---
 .env
-data/
-*/data/
-prometheus_data/
-grafana_data/
+**/data/
+**/prometheus_data/
+**/grafana_data/
 
-# Ansible
+# --- Pi-hole Specific ---
+stacks/general/pihole/config/*
+stacks/general/pihole/dnsmasq.d/*
+!**/config/.gitkeep
+!**/dnsmasq.d/.gitkeep
+
+# --- Ansible ---
 *.retry
 ansible.log
+.ansible_check
 
-# OS
+# --- OS & Logs ---
 .DS_Store
 Thumbs.db
-
-# Logs
 *.log
+EOF
