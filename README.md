@@ -6,7 +6,7 @@ Este repositorio contiene la infraestructura completa de mi Homelab, gestionada 
 - **Virtualización:** VirtualBox (Ubuntu VM Detrás de pfSense).
 - **Orquestación:** Docker & Docker Compose.
 - **Automatización:** Ansible.
-- **Monitoreo:** Prometheus + Grafana + cAdvisor.
+- **Monitoreo:** Prometheus + Grafana + cAdvisor + Node Exporter.
 
 ## 📂 Estructura del Proyecto
 - `ansible/`: Playbooks para configurar el servidor y desplegar stacks.
