@@ -45,6 +45,28 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
+      # Mapeo de Provisioning (Configuraciones)
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
+      # Mapeo de la carpeta donde pondrás tus JSON
+      - ./grafana/dashboards_json:/var/lib/grafana/dashboards:ro
+    networks:
+      - monitoring
+  
+  # 4. node-exporter monitorea hardware de VM. Se agrega para monitorear docker en Dashboard Grafana
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     networks:
       - monitoring
 
