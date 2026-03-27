@@ -5,18 +5,40 @@
   become: true
 
   tasks:
-    # Tarea 1: El Stack de Monitoreo
-    - name: Desplegar Stack de Monitoreo
+    # 1. ASEGURAR CIMIENTOS (Red y Volúmenes)
+    - name: "Infra: Crear red homelab_network"
+      community.docker.docker_network:
+        name: homelab_network
+        state: present
+
+    - name: "Infra: Crear volumen externo para Portainer"
+      community.docker.docker_volume:
+        name: portainer_data
+        state: present
+
+    # 2. PRE-DESCARGA (Evitar Timeouts de red)
+    - name: "Red: Pre-descargar imágenes pesadas (reintentos)"
+      community.docker.docker_image:
+        name: "{{ item }}"
+        source: pull
+      loop:
+        - "pihole/pihole:latest"
+        - "jc21/nginx-proxy-manager:latest"
+        - "portainer/portainer-ce:latest"
+      register: pull_result
+      until: pull_result is succeeded
+      retries: 5
+      delay: 15
+
+  # 3. DESPLIEGUE DE STACKS (El orden importa)
+    - name: "Docker: Desplegar Stack Homelab General (Dueño)"
       community.docker.docker_compose_v2:
-        project_src: "/home/rgsanchez/My-Ultimate-Homelab/stacks/monitoring"
+        project_src: "{{ ansible_env.HOME }}/My-Ultimate-Homelab/stacks/general"
         state: present
         wait: yes
 
-    # Tarea 2: Tu otro Stack (Homelab General)
-    - name: Desplegar Stack Homelab General
+    - name: "Docker: Desplegar Stack de Monitoreo (Invitado)"
       community.docker.docker_compose_v2:
-        project_src: "/home/rgsanchez/My-Ultimate-Homelab/stacks/general"
+        project_src: "{{ ansible_env.HOME }}/My-Ultimate-Homelab/stacks/monitoring"
         state: present
         wait: yes
-        
-    

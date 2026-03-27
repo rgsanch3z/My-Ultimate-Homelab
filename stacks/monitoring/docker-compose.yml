@@ -1,12 +1,11 @@
-#version: '3.8'
-
 services:
+
   # 1. El Sensor (cAdvisor)
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.47.0 # Versión estable
+    image: gcr.io/cadvisor/cadvisor:v0.47.0
     container_name: cadvisor
     restart: unless-stopped
-    privileged: true # <-- Esto es clave en algunas distros de Ubuntu para leer los nombres
+    privileged: true
     devices:
       - /dev/kmsg
     volumes:
@@ -16,7 +15,7 @@ services:
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
     networks:
-      - monitoring
+      - homelab_network
 
   # 2. La Base de Datos (Prometheus)
   prometheus:
@@ -24,7 +23,7 @@ services:
     container_name: prometheus
     restart: unless-stopped
     ports:
-      - "9090:9090"  
+      - "9090:9090"
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
@@ -34,7 +33,7 @@ services:
       - '--storage.tsdb.retention.time=15d'
       - '--storage.tsdb.retention.size=5GB'
     networks:
-      - monitoring
+      - homelab_network
 
   # 3. La Interfaz (Grafana)
   grafana:
@@ -45,15 +44,13 @@ services:
       - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
-      # Mapeo de Provisioning (Configuraciones)
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources:ro
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards:ro
-      # Mapeo de la carpeta donde pondrás tus JSON
       - ./grafana/dashboards_json:/var/lib/grafana/dashboards:ro
     networks:
-      - monitoring
-  
-  # 4. node-exporter monitorea hardware de VM. Se agrega para monitorear docker en Dashboard Grafana
+      - homelab_network
+
+  # 4. node-exporter
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
@@ -68,12 +65,11 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
     networks:
-      - monitoring
+      - homelab_network
 
 networks:
-  monitoring:
+  homelab_network:
     external: true
-    name: homelab_network
 
 volumes:
   prometheus_data:
