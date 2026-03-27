@@ -72,7 +72,8 @@ services:
 
 networks:
   monitoring:
-    driver: bridge
+    external: true
+    name: homelab_network
 
 volumes:
   prometheus_data:
