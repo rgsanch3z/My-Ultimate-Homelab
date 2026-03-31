@@ -18,3 +18,19 @@ Para poner todo en marcha tras un reinicio o cambio de configuración:
 ```bash
 cd ansible
 ansible-playbook -i inventory.ini deploy_stacks.yml --ask-become-pass
+
+
+---
+### 🚀 Stacks Adicionales (Independientes)
+
+#### **Stack: Apps**
+Este stack se utiliza para pruebas de despliegue de aplicaciones independientes. 
+No se despliega automáticamente con el Playbook principal de Ansible.
+
+* **Servicio:** Web de prueba (Nginx Hello Demo)
+* **URL:** http://webapp.homelab
+* **Despliegue Manual:**
+    ```bash
+    cd stacks/apps && docker compose up -d
+    ```
+---

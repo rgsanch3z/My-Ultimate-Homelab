@@ -1,0 +1,11 @@
+services:
+  webapp:
+    image: nginxdemos/hello:latest
+    container_name: web-test-java
+    restart: always
+    networks:
+      - homelab_network
+
+networks:
+  homelab_network:
+    external: true
