@@ -33,4 +33,8 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     ```bash
     cd stacks/apps && docker compose up -d
     ```
+* **Comando "Pro" para estado docker:**
+    ```bash
+    docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+    ```
 ---
