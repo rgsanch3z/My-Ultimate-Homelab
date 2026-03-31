@@ -18,7 +18,7 @@ Para poner todo en marcha tras un reinicio o cambio de configuración:
 ```bash
 cd ansible
 ansible-playbook -i inventory.ini deploy_stacks.yml --ask-become-pass
-
+```
 
 ---
 ### 🚀 Stacks Adicionales (Independientes)
