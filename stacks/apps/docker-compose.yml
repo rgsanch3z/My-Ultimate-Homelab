@@ -6,6 +6,15 @@ services:
     networks:
       - homelab_network
 
+# El segundo contenedor para probar teoría de que dozzle agrupa por stack cuando hay mas de 1
+#  test-probe:
+#    image: alpine
+#    container_name: probe-stack-apps
+#    command: sleep infinity
+#    restart: always
+#    networks:
+#      - homelab_network
+      
 networks:
   homelab_network:
     external: true
