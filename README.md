@@ -56,7 +56,7 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     git reset --hard origin/main
     ```
 * **Comando Subir REPO "git push" con GitHub:**
-```bash
+    ```bash
     git add .
     git commit -m "Cambiar comentario"
     git push origin main
