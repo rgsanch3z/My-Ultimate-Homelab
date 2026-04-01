@@ -1,0 +1,34 @@
+- Infraestructura:
+    - Portainer:
+        icon: portainer.png
+        href: http://portainer.homelab/
+        description: Gestión de Docker
+    - Nginx Proxy Manager:
+        icon: nginx-proxy-manager.png
+        href: http://prowler.homelab/
+        description: Reverse Proxy & SSL
+    - Pi-hole:
+        icon: pi-hole.png
+        href: http://pihole.homelab/admin/
+        description: DNS & Ad-block
+    - Dozzle:
+        icon: dozzle.png
+        href: http://dozzle.homelab/
+        description: Logs en tiempo real
+
+- Monitoreo:
+    - Grafana:
+        icon: grafana.png
+        href: http://grafana.homelab/
+        description: Visualización de datos
+    - Prometheus:
+        icon: prometheus.png
+        href: http://prometheus.homelab/
+        description: Base de datos de métricas
+
+- Red:
+    - pfSense:
+        icon: pfsense.png
+        href: https://10.0.0.1/
+        description: Firewall Perimetral
+    

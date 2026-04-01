@@ -1,0 +1,10 @@
+title: "SANCHEZLAB Homelab"
+allowSelection: true
+safeMode: false
+# Homepage quiere ver exactamente lo que el navegador envía en la cabecera 'Host'
+allowedHosts:
+  - 10.0.0.11
+  - 10.0.0.11:3001
+  - localhost
+  - localhost:3001
+  - dashboard.homelab

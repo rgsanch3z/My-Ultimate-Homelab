@@ -1,0 +1,20 @@
+name: dashboard
+
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    restart: always
+    ports:
+      - 3001:3000
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: "10.0.0.11,10.0.0.11:3001,localhost,localhost:3001,dashboard.homelab"
+    volumes:
+      - ./config:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - homelab_network
+
+networks:
+  homelab_network:
+    external: true

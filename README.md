@@ -34,6 +34,23 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     cd stacks/apps && docker compose up -d
     ```
 ---
+## 🏠 Dashboard Central (Homepage)
+Centro de mando unificado para la gestión de servicios del Homelab, configurado con validación de host y resolución DNS local.
+
+### 🚀 Características
+* **Dashboard:** Homepage (GetHomepage).
+* **URL Local:** `http://dashboard.homelab` (vía Nginx Proxy Manager).
+* **Integración:** Monitoreo de recursos en tiempo real mediante `docker.sock`.
+* **Segmentación:**
+  * **Infraestructura:** Portainer, NPM, Pi-hole, Dozzle.
+  * **Monitoreo:** Grafana, Prometheus.
+  * **Red:** pfSense (Acceso Externo).
+
+### 🛠️ Estructura de Archivos
+- `docker-compose.yml`: Despliegue del servicio.
+- `config/settings.yaml`: Configuración de seguridad y headers.
+- `config/services.yaml`: Definición de grupos e iconos.
+---
 
 ### 🚀 Comandos Adicionales
 
