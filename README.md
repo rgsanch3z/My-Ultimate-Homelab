@@ -33,6 +33,10 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     ```bash
     cd stacks/apps && docker compose up -d
     ```
+---
+---
+### 🚀 Comandos Adicionales
+
 * **Comando "Pro" para estado docker:**
     ```bash
     docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
@@ -50,5 +54,4 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     # 2. FUERZA a que tu carpeta local sea un espejo exacto de la rama 'main' (o 'master')
     # CUIDADO: Esto borrará los cambios que hiciste en los archivos .yml locales
     git reset --hard origin/main
-
 ---
