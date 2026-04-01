@@ -21,7 +21,7 @@ ansible-playbook -i inventory.ini deploy_stacks.yml --ask-become-pass
 ```
 
 ---
-### 🚀 Stacks Adicionales (Independientes)
+### 🚀 Stacks Adicional WebApp (Independientes)
 
 #### **Stack: Apps**
 Este stack se utiliza para pruebas de despliegue de aplicaciones independientes. 
@@ -34,7 +34,7 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     cd stacks/apps && docker compose up -d
     ```
 ---
-## 🏠 Dashboard Central (Homepage)
+## 🏠 Stack Adicional Dashboard Central (Homepage)
 Centro de mando unificado para la gestión de servicios del Homelab, configurado con validación de host y resolución DNS local.
 
 ### 🚀 Características
