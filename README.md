@@ -37,4 +37,18 @@ No se despliega automáticamente con el Playbook principal de Ansible.
     ```bash
     docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
     ```
+* **Comando RECREAR docker:**
+    Forzar a Docker a que asigne las nuevas etiquetas al contenedor nombre_contenedor.
+    ```bash
+    docker compose up -d --force-recreate
+    ```
+* **Comando Limpieza y Resincronización con GitHub:**
+    ```bash
+    # 1. Trae la información más reciente de GitHub sin fusionar nada aún
+    git fetch origin
+
+    # 2. FUERZA a que tu carpeta local sea un espejo exacto de la rama 'main' (o 'master')
+    # CUIDADO: Esto borrará los cambios que hiciste en los archivos .yml locales
+    git reset --hard origin/main
+
 ---
